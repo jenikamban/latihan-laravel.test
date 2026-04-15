@@ -3,9 +3,13 @@
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/student', [StudentController::class, 'index']);
-Route::get('/student/creat', [StudentController::class, 'creat']);
+
+Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+Route::get('/student/Create', [StudentController::class, 'Create'])->name('student.create');
+Route::POST('/student/store', [StudentController::class, 'store'])->name('student.store');
+Route::get('/student/{student}edit', [StudentController::class, 'edit'])->name('student.edit');
+Route::put('/student/{student}', [StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{student}', [StudentController::class, 'destroy'])->name('student.destroy');
