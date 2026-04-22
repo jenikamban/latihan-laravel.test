@@ -1,5 +1,6 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot>
+
     <form method="POST" action="{{ route('student.update', $student) }}">
         @csrf
         @method('PUT')
@@ -15,7 +16,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label class="nim" for="exampleCheck1">Nim</label>
+            <label for="nim" class="form-label">Nim</label>
             <input type="number" class="form-control @error('nim') is-invalid 
             @enderror" id="nim"
                 name="nim" value="{{ old('nim', $student->nim) }}">

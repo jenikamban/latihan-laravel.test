@@ -70,7 +70,7 @@ class StudentController extends Controller
     {
         return view('student.edit', [
             'title' => ' Edit Student',
-            'students' => $student,
+            'student' => $student,
         ]);
     }
 
@@ -91,7 +91,7 @@ class StudentController extends Controller
         ]);
 
         $student->update($validated);
-    return to_route('Student.index')->withSuccess('Data berhasil diubah');
+        return to_route('student.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
