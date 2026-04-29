@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Department;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -25,8 +25,13 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.creat',['title' => 'Student']);
-    }
+        
+    return view('student.creat', [
+        'title' => 'Student',
+        'Departments' => Department::all()
+    ]);
+}
+    
 
     /**
      * Store a newly created resource in storage.
@@ -91,7 +96,7 @@ class StudentController extends Controller
         ]);
 
         $student->update($validated);
-        return to_route('student.index')->withSuccess('Data berhasil diubah');
+       return to_route('student.index')->withSuccess('Data berhasil di tambahkan');
     }
 
     /**

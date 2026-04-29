@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\lecturer;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -12,9 +13,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-         return view('Department.index',[
-            'title' => 'Department',
-            'Departments' => Department::latest()->get(),
+         return view('lecturer.index', [
+            'title' => ' lecturer',
+            'lecturers' => lecturer::latest()->get(),
             
             
             ]);
