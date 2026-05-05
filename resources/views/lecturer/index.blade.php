@@ -10,11 +10,52 @@
 
     <a class="btn btn-primary" href="{{ route('lecturer.create') }}" role="button">Create</a>
 
+    <form action="">
+
+        <div class="row g-3 mb-3">
+
+            <div class="col-md-4">
+
+                <input type="text" class="form-control" id="keyword" name="keyword"
+                    placeholder="search lecturer name ..." value="{{ request('keyword') }}">
+
+
+            </div>
+
+            <div class="col-md-4">
+
+                <select class="form-select "id="department_id" name="department_id">
+                    <option value="">All Department</option>
+                    @foreach ($Departments as $department)
+                        <option value="{{ $department->id }}"
+                            {{ request('department_id') == $department->id ? 'selected' : '' }}>
+                            {{ $department->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <button type="submit" class="btn btn-success">search</button>
+
+            </div>
+
+
+        </div>
+
+
+    </form>
+
+
     <ul class="list-group">
         @foreach ($lecturers as $lecturer)
             <li class="list-group-item">
-                {{ $loop->iteration }}. {{ $lecturer->name }} -- {{ $lecturer->Department->name }}
-                <a class="btn btn-warning btn-sm" href="{{ route('lecturer.edit', $lecturer) }}" role="button">edit</a>
+                {{ $lecturers->firstItem() + $loop->index }}. {{ $lecturer->name }} --
+                {{ $lecturer->Department->name }}
+                <a class="btn btn-warning btn-sm" href="{{ route('lecturer.edit', $lecturer) }}"
+                    role="button">edit</a>
                 <form action="{{ route('lecturer.destroy', $lecturer) }}" method="POST" class="d-inline">
                     @method('DELETE')
                     @csrf
@@ -26,4 +67,6 @@
             </li>
         @endforeach
     </ul>
+    {{ $lecturers->links() }}
+
 </x-app>

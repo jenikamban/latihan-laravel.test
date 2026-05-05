@@ -14,8 +14,13 @@
         @foreach ($Departments as $Department)
             <li class="list-group-item">
                 {{ $loop->iteration }}. {{ $Department->name }}
+
+                <a class="btn btn-info btn-sm" href="{{ route('department.show', $Department) }}" role="button">Detail</a>
+
                 <a class="btn btn-warning btn-sm" href="{{ route('department.edit', $Department) }}"
                     role="button">edit</a>
+
+
                 <form action="{{ route('department.destroy', $Department) }}" method="POST" class="d-inline">
                     @method('DELETE')
                     @csrf
